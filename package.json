@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "serverless": "^4.36.1",
+    "serverless-deployment-bucket": "^1.6.0",
+    "serverless-localstack": "^1.4.0"
+  },
+  "name": "serveless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "deploy-sls": "sls deploy --stage local",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run deploy:local",
+    "deploy:local": "set -a; [ -f .env.local ] && . ./.env.local; set +a; sls deploy --stage ${STAGE:-local}",
+    "remove:local": "set -a; [ -f .env.local ] && . ./.env.local; set +a; sls remove --stage ${STAGE:-local}",
+    "print:local": "set -a; [ -f .env.local ] && . ./.env.local; set +a; sls print --stage ${STAGE:-local}"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
