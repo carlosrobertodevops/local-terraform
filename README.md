@@ -27,9 +27,3 @@ npm run infra:init
 npm run infra:apply
 
 ```
-
-## 02 Subir as funções lambdas via Serverless Framweworks
-
-```
-npm run deploy
-```
