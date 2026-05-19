@@ -9,12 +9,13 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "deploy-sls": "sls deploy --stage local",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npm run deploy:local",
-    "deploy:local": "set -a; [ -f .env.local ] && . ./.env.local; set +a; sls deploy --stage ${STAGE:-local}",
-    "remove:local": "set -a; [ -f .env.local ] && . ./.env.local; set +a; sls remove --stage ${STAGE:-local}",
-    "print:local": "set -a; [ -f .env.local ] && . ./.env.local; set +a; sls print --stage ${STAGE:-local}"
+    "infra:init": "npm run infra:init:local",
+    "infra:init:local": "set -a; [ -f .env ] && . ./.env; [ -f .env.local ] && . ./.env.local; [ -f .env.network ] && . ./.env.network; set +a; tflocal -chdir=terraform init",
+    "infra:apply": "npm run infra:apply:local",
+    "infra:apply:local": "set -a; [ -f .env ] && . ./.env; [ -f .env.local ] && . ./.env.local; [ -f .env.network ] && . ./.env.network; set +a; tflocal -chdir=terraform apply -auto-approve && ./scripts/terraform-outputs-to-env.sh",
+    "infra:destroy": "npm run infra:destroy:local",
+    "infra:destroy:local": "set -a; [ -f .env ] && . ./.env; [ -f .env.local ] && . ./.env.local; [ -f .env.network ] && . ./.env.network; set +a; tflocal -chdir=terraform destroy -auto-approve && rm -f .env.network",
   },
   "keywords": [],
   "author": "",
