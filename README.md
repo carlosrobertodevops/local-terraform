@@ -10,7 +10,7 @@
 localstack status -d
 ```
 
-# 2 - PAASO
+# 2 - PASSO
 
 ```
 ## instalar o tflocal
